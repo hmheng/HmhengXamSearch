@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HmhengXamSearch"
+             x:Class="HmhengXamSearch.MainPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <ActivityIndicator Color="DeepSkyBlue" 
+                           HorizontalOptions="CenterAndExpand" 
+                           VerticalOptions="CenterAndExpand" 
+                           IsRunning="false" 
+                           IsVisible="false" 
+                           x:Name="LoadingIndicator" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Entry x:Name="txtKeyword" Grid.Row="0" Grid.Column="0"></Entry>
+                    <Button x:Name="btnSearch" Text="Search" Grid.Row="0" Grid.Column="1"/>
+                </Grid>
+                <ListView ItemsSource="{Binding Values}" 
+                  ItemSelected="ItemSelectedEventHandler" 
+                  CachingStrategy="RetainElement" 
+                  HorizontalOptions="CenterAndExpand" 
+                  x:Name="DataTable" 
+                  IsVisible="false">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding name}" 
+                              Detail="{Binding snippet}" 
+                              TextColor="{DynamicResource ListItemTextStyle}" 
+                              DetailColor="{DynamicResource ListItemDetailTextStyle}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
